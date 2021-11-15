@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="naver_green">#60d171</color>
+    <color name="vacant_gray">#f8f8f8</color>
+    <color name="main_gray">#6f6f6f</color>
+    <color name="sub_gray">#999999</color>
+    <color name="boarder_gray">#e0e0e0</color>
 </resources>

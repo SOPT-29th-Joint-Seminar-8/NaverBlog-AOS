@@ -19,4 +19,8 @@
     <string name="feed_today_visitor">오늘</string>
     <string name="feed_visitor_count">N</string>
     <string name="feed_total_visitor">전체</string>
+    <string name="feed_board_type">전체글</string>
+    <string name="item_feed_title">title</string>
+    <string name="item_feed_text">text</string>
+    <string name="item_feed_date">1999.01.01</string>
 </resources>
