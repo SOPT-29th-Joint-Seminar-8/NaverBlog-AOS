@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NaverBlog-Andoid</string>
+    <string name="menu_feed">feed</string>
+    <string name="menu_recommend">recommend</string>
+    <string name="menu_write">write</string>
+    <string name="menu_alarm">alarm</string>
+    <string name="menu_profile">profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
