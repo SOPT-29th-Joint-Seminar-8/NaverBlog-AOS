@@ -54,6 +54,12 @@ class MainActivity : AppCompatActivity() {
             }
             return@setOnItemSelectedListener true
         }
+
+        binding.imageviewMainWrite.setOnClickListener {
+            binding.viewpagerMain.currentItem = WRITE_FRAGMENT
+        }
+
+        binding.bottomNavigationMain.itemIconTintList = null
     }
 
     private companion object {
