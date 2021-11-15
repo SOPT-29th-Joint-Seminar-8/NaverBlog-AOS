@@ -12,4 +12,12 @@
     <string name="feedfragment">FeedFragment</string>
     <string name="recommendfragment">RecommendFragment</string>
     <string name="writefragment">WriteFragment</string>
+
+
+    <!-- Comment Activity-->
+    <string name="text_comment">글 댓글</string>
+    <string name="write_comment">댓글을 입력해주세요</string>
+    <string name="register">등록</string>
+    <string name="secret_comment">비밀 댓글</string>
+
 </resources>

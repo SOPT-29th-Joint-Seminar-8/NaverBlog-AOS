@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="naver_green">#60d171</color>
+
+    <!--대호 comment activity-->
+    <color name="gray_99">#999999</color>
+    <color name="c3gray">#c3c3c3</color>
+    <color name="e0gray">#e0e0e0</color>
+    <color name="c4gray">#c4c4c4</color>
+    <color name="d4gray">#d3d3d3</color>
 </resources>
