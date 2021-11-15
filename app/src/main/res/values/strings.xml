@@ -12,4 +12,11 @@
     <string name="feedfragment">FeedFragment</string>
     <string name="recommendfragment">RecommendFragment</string>
     <string name="writefragment">WriteFragment</string>
+    <string name="feed_owner">blog owner</string>
+    <string name="feed_category">category</string>
+    <string name="feed_neighbor">N명의 이웃</string>
+    <string name="feed_blog_name">blog name</string>
+    <string name="feed_today_visitor">오늘</string>
+    <string name="feed_visitor_count">N</string>
+    <string name="feed_total_visitor">전체</string>
 </resources>
