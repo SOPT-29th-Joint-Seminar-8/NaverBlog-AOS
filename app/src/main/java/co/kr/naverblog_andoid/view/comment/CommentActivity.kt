@@ -2,6 +2,8 @@ package co.kr.naverblog_andoid.view.comment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import co.kr.naverblog_andoid.R
 import co.kr.naverblog_andoid.adapter.CommentAdapter
 import co.kr.naverblog_andoid.data.CommentData
@@ -19,6 +21,8 @@ class CommentActivity : AppCompatActivity() {
         addItemList()
         initRecyclerView()
         imageBackOnClickEvent()
+        commentTextWatcher()
+        goUpScrollView()
     }
 
     private fun initRecyclerView() {
@@ -29,6 +33,43 @@ class CommentActivity : AppCompatActivity() {
     private fun imageBackOnClickEvent() {
         binding.imageviewCommentBack.setOnClickListener {
             super.onBackPressed()
+        }
+    }
+
+    private fun commentTextWatcher() {
+        binding.edittextComment.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                with(binding.buttonCommentPost) {
+                    when(s?.length) {
+                        0 -> this.isEnabled = false
+                        else -> this.isEnabled = true
+                    }
+                }
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                with(binding.buttonCommentPost) {
+                    when(s?.length) {
+                        0 -> this.isEnabled = false
+                        else -> this.isEnabled = true
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                with(binding.buttonCommentPost) {
+                    when(s?.length) {
+                        0 -> this.isEnabled = false
+                        else -> this.isEnabled = true
+                    }
+                }
+            }
+        })
+    }
+
+    private fun goUpScrollView() {
+        binding.buttonCommentGoup.setOnClickListener {
+            binding.nestedscrollviewComment.scrollTo(0, 0)
         }
     }
 
