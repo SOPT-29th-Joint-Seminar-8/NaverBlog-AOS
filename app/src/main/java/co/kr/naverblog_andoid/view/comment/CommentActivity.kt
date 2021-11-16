@@ -22,6 +22,7 @@ class CommentActivity : AppCompatActivity() {
         initRecyclerView()
         imageBackOnClickEvent()
         commentTextWatcher()
+        goUpScrollView()
     }
 
     private fun initRecyclerView() {
@@ -64,6 +65,12 @@ class CommentActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun goUpScrollView() {
+        binding.buttonCommentGoup.setOnClickListener {
+            binding.nestedscrollviewComment.scrollTo(0, 0)
+        }
     }
 
     private fun addItemList() {
