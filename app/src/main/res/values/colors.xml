@@ -13,4 +13,7 @@
     <color name="main_gray">#6f6f6f</color>
     <color name="sub_gray">#999999</color>
     <color name="boarder_gray">#e0e0e0</color>
+    <color name="border_comment_gray">#d3d3d3</color>
+    <color name="text_comment_gray">#c3c3c3</color>
+    <color name="comment_gray">#7d7d7d</color>
 </resources>

@@ -23,4 +23,12 @@
     <string name="item_feed_title">title</string>
     <string name="item_feed_text">text</string>
     <string name="item_feed_date">1999.01.01</string>
+    <string name="comment_title">글 댓글</string>
+    <string name="hint_comment">댓글을 입력해주세요</string>
+    <string name="button_comment_post">등록</string>
+    <string name="comment_secret">비밀 댓글</string>
+    <string name="comment_username">user</string>
+    <string name="comment_date">2021.11.16. 12:30</string>
+    <string name="comment_feedback">답글 달기</string>
+    <string name="comment_feedback_visibility">답글 N개 보기</string>
 </resources>
