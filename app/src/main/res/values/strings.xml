@@ -20,4 +20,28 @@
     <string name="register">등록</string>
     <string name="secret_comment">비밀 댓글</string>
 
+
+
+    <!-- Feed Fragment-->
+    <string name="feed_today">오늘</string>
+    <string name="feed_today_count">0</string>
+    <string name="feed_total">전체</string>
+    <string name="feed_total_count">2,807</string>
+    <string name="feed_blog_name">Dear</string>
+    <string name="feed_blog_username">솝트 디자인</string>
+    <string name="feed_each_neighbor">서로이웃</string>
+    <string name="feed_category1">일상</string>
+    <string name="feed_category2">생각</string>
+    <string name="feed_neighbor_num">38명의 이웃</string>
+    <string name="feed_total_post">전체글</string>
+
+    <!-- item feed list-->
+    <string name="feed_posting_title">포스팅 제목</string>
+    <string name="feed_posting_content">포스팅 내용</string>
+    <string name="feed_posting_date">2021.2.2.</string>
+    <string name="feed_posting_heart">6</string>
+    <string name="feed_posting_comment">6</string>
+
+
+
 </resources>
