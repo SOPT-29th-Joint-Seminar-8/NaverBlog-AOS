@@ -1,6 +1,7 @@
 package co.kr.naverblog_andoid.data
 
 data class FeedData(
+    val postId : Int,
     val img : Int,
     val title : String,
     val content : String,
