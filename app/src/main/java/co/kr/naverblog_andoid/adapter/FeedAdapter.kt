@@ -1,5 +1,6 @@
 package co.kr.naverblog_andoid.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,10 +9,10 @@ import co.kr.naverblog_andoid.data.FeedData
 import co.kr.naverblog_andoid.databinding.ItemFeedListBinding
 import com.bumptech.glide.Glide
 
-class FeedAdapter : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>(){
+class FeedAdapter(val itemClick: (FeedData) -> Unit) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>(){
     val feedList = mutableListOf<FeedData>()
 
-    class FeedViewHolder(private val binding: ItemFeedListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class FeedViewHolder(private val binding: ItemFeedListBinding, val itemClick: (FeedData) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: FeedData) {
 
             Glide.with(binding.imageviewFeedListMainImage.context)
@@ -38,13 +39,17 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>(){
                     }
                 }
 
+                binding.root.setOnClickListener{
+                    itemClick(data)
+                }
+
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         val binding = ItemFeedListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FeedViewHolder(binding)
+        return FeedViewHolder(binding, itemClick)
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
