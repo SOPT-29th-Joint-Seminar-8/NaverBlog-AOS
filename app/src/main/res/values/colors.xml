@@ -17,4 +17,9 @@
     <color name="c4gray">#c4c4c4</color>
     <color name="d4gray">#d3d3d3</color>
     <color name="gray_7d">#7d7d7d</color>
+    <!-- feed fragment-->
+    <color name="beige">#fff4e2</color>
+    <color name="ebgray">#ebebeb</color>
+    <color name="f8gray">#f8f8f8</color>
+    <color name="gray_6f">#6f6f6f</color>
 </resources>
