@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_enabled="false"
-        android:drawable="@drawable/rectangle_full_99gray"
+        android:drawable="@drawable/ic_bigheart_default"
         />
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/rectangle_full_naver_green"
+        android:drawable="@drawable/ic_bigheart_selected"
         />
 </selector>

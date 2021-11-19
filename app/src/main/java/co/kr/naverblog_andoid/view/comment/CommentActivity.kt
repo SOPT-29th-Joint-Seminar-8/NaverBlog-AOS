@@ -2,13 +2,120 @@ package co.kr.naverblog_andoid.view.comment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import co.kr.naverblog_andoid.R
+import co.kr.naverblog_andoid.databinding.ActivityCommentBinding
+import org.w3c.dom.Comment
 
 class CommentActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityCommentBinding
+    private lateinit var commentAdapter: CommentAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comment)
+        binding = ActivityCommentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // 대호 작업공간
+        initAdapter()
+        registerButton()
+        goBack()
+
+
+    }
+    // 전체 댓글 개수
+
+
+    // 뒤로가기 버튼
+
+    private fun goBack(){
+        binding.imageViewGoBack.setOnClickListener(){
+            super.onBackPressed()
+        }
+    }
+
+    // 답글 입력 버튼
+    private fun registerButton(){
+        binding.editTextWriteComment.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (binding.editTextWriteComment.length() > 0){
+                    binding.buttonCommentRegister.isEnabled = true
+                    binding.buttonCommentRegister.isClickable = true
+                }else {
+                    binding.buttonCommentRegister.isEnabled = false
+                    binding.buttonCommentRegister.isClickable = false
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if (binding.editTextWriteComment.length() > 0){
+                    binding.buttonCommentRegister.isEnabled = true
+                    binding.buttonCommentRegister.isClickable = true
+                }else {
+                    binding.buttonCommentRegister.isEnabled = false
+                    binding.buttonCommentRegister.isClickable = false
+                }
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (binding.editTextWriteComment.length() > 0){
+                    binding.buttonCommentRegister.isEnabled = true
+                    binding.buttonCommentRegister.isClickable = true
+                }else {
+                    binding.buttonCommentRegister.isEnabled = false
+                    binding.buttonCommentRegister.isClickable = false
+                }
+            }
+        })
+    }
+
+
+    private fun initAdapter() {
+        commentAdapter = CommentAdapter()
+        binding.recyclerViewComment.adapter = commentAdapter
+
+
+        commentAdapter.userList.addAll(
+
+            listOf(
+                CommentData(
+                    0,
+                    "슈카",
+                    R.drawable.ic_color_tag,
+                    "하락장입니다 여러분 !!!",
+                    "2020,05,17",
+                    "12:20",
+                    true,
+                    5,
+                    0,
+                    listOf()
+                ),
+                CommentData(
+                    0,
+                    "슈카",
+                    R.drawable.ic_color_tag,
+                    "하락장입니다 여러분 !!!",
+                    "2020,05,17",
+                    "12:20",
+                    true,
+                    5,
+                    1,
+                    listOf(
+                        RecommentData(
+                            0,
+                            "삼성전자 드가자",
+                            R.drawable.ic_color_tag,
+                            "야수의 심장으로 들어갑니다",
+                            "2020,05,17",
+                            "12:25",
+                            true,
+                            1,
+                        )
+                    )
+                )
+            )
+        )
+
+        commentAdapter.notifyDataSetChanged()
     }
 }
