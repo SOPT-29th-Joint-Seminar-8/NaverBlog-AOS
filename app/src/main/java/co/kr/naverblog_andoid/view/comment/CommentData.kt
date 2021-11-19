@@ -1,0 +1,17 @@
+package co.kr.naverblog_andoid.view.comment
+
+data class CommentData(
+    val id : Int,
+    val name : String,
+    val imageUrl : Int,
+    val comment : String,
+    val date : String,
+    val time : String,
+    val isHeartClick : Boolean,
+    val heartCount : Int,
+
+
+    val recommentCount : Int,
+    val recommentList : List<RecommentData>,
+
+)
