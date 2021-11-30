@@ -34,9 +34,9 @@ class FeedFragment : Fragment() {
 
         feedAdapter.feedList.addAll(
             listOf(
-                FeedData(0, 0,"title", "contnet","date",false,6,6),
-                FeedData(1, 1,"title1", "contnet1","date1",false,7,7),
-                FeedData(2, 2,"title2", "contnet2","date2",false,8,8)
+                FeedData(0, 0,"title", "contnet","date",false,true,6, 6),
+                FeedData(1, 1,"title1", "contnet1","date1",false,true,7, 8),
+                FeedData(2, 2,"title2", "contnet2","date2",false,true,6, 6)
             )
         )
 

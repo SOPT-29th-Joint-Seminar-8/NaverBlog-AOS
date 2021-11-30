@@ -1,10 +1,12 @@
-package co.kr.naverblog_andoid.view.comment
+package co.kr.naverblog_andoid.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.kr.naverblog_andoid.R
 import co.kr.naverblog_andoid.databinding.ItemRecommentBinding
+import co.kr.naverblog_andoid.data.RecommentData
 import com.bumptech.glide.Glide
 
 class RecommentAdapter(): RecyclerView.Adapter<RecommentAdapter.RecommentViewHolder>() {
@@ -13,7 +15,7 @@ class RecommentAdapter(): RecyclerView.Adapter<RecommentAdapter.RecommentViewHol
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecommentAdapter.RecommentViewHolder {
+    ): RecommentViewHolder {
         val binding = ItemRecommentBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
@@ -33,10 +35,11 @@ class RecommentAdapter(): RecyclerView.Adapter<RecommentAdapter.RecommentViewHol
 
     class RecommentViewHolder(private val binding: ItemRecommentBinding)
         : RecyclerView.ViewHolder(binding.root)  {
-        fun onBind(data : RecommentData){
 
-            Glide.with(binding.imageViewIcTagColor.context)
+        fun onBind(data : RecommentData){
+            Glide.with(binding.imageViewIcTagColor)
                 .load(data.imageUrl)
+                .override(40,40)
                 .into(binding.imageViewIcTagColor)
 
             binding.textViewHeartCount.text =  data.heartCount.toString()// 좋아요 개수
@@ -45,17 +48,20 @@ class RecommentAdapter(): RecyclerView.Adapter<RecommentAdapter.RecommentViewHol
             binding.textViewReComment.text = data.comment // 댓글 내용
             binding.textViewReName.text = data.name
 
+            when(data.isOwner){
+                true -> binding.imageViewIsOwner.visibility = View.VISIBLE
+                false -> binding.imageViewIsOwner.visibility = View.GONE
+            }
+
             binding.imageButtonReHeart.setOnClickListener{
                 var heartCount = Integer.parseInt(binding.textViewHeartCount.text as String)
-                with(binding.imageButtonReHeart){
-                    this.isSelected = !this.isSelected
+                with(binding.imageButtonReHeart) {
+                    this.isSelected = !isSelected
 
-                    if (this.isSelected){
+                    if (this.isSelected) {
                         heartCount += 1
-                        binding.imageButtonReHeart.setImageResource(R.drawable.ic_bigheart_selected)
-                    }else {
+                    } else {
                         heartCount -= 1
-                        binding.imageButtonReHeart.setImageResource(R.drawable.ic_bigheart_default)
                     }
                 }
                 binding.textViewHeartCount.text = heartCount.toString()

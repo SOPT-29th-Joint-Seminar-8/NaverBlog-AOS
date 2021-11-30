@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import co.kr.naverblog_andoid.R
+import co.kr.naverblog_andoid.adapter.CommentAdapter
+import co.kr.naverblog_andoid.data.CommentData
+import co.kr.naverblog_andoid.data.RecommentData
 import co.kr.naverblog_andoid.databinding.ActivityCommentBinding
-import org.w3c.dom.Comment
-
 class CommentActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCommentBinding
     private lateinit var commentAdapter: CommentAdapter
@@ -21,10 +22,16 @@ class CommentActivity : AppCompatActivity() {
         registerButton()
         goBack()
 
+        goUp()
 
     }
-    // 전체 댓글 개수
+    // go uo
 
+    private fun goUp(){
+        binding.imageViewGoUp.setOnClickListener {
+            binding.nestedScrollView.scrollTo(0, 0)
+        }
+    }
 
     // 뒤로가기 버튼
 
@@ -82,11 +89,12 @@ class CommentActivity : AppCompatActivity() {
                     0,
                     "슈카",
                     R.drawable.ic_color_tag,
-                    "하락장입니다 여러분 !!!",
-                    "2020,05,17",
-                    "12:20",
+                    "하락장입니다 여러분 !",
                     true,
-                    5,
+                    "2020,05,17",
+                    "12:12",
+                    false,
+                    0,
                     0,
                     listOf()
                 ),
@@ -94,22 +102,37 @@ class CommentActivity : AppCompatActivity() {
                     0,
                     "슈카",
                     R.drawable.ic_color_tag,
-                    "하락장입니다 여러분 !!!",
-                    "2020,05,17",
-                    "12:20",
+                    "하락장입니다 여러분 !",
                     true,
-                    5,
+                    "2020,05,17",
+                    "12:12",
+                    true,
+                    3,
+                    0,
+                    listOf()
+                ),
+                CommentData(
+                    0,
+                    "슈카",
+                    R.drawable.ic_color_tag,
+                    "하락장입니다 여러분 !",
+                    true,
+                    "2020,05,17",
+                    "12:12",
+                    true,
+                    4,
                     1,
                     listOf(
                         RecommentData(
                             0,
-                            "삼성전자 드가자",
+                            "gogo",
                             R.drawable.ic_color_tag,
-                            "야수의 심장으로 들어갑니다",
+                            "gazuaaa",
+                            false,
                             "2020,05,17",
-                            "12:25",
-                            true,
-                            1,
+                            "12:20",
+                            false,
+                            0,
                         )
                     )
                 )
