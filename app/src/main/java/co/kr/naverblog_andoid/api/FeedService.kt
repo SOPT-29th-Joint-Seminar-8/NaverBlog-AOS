@@ -12,7 +12,7 @@ interface FeedService {
 
     @PATCH("post/{post-id}/like")
     fun patchLike(
-        @Body body: RequestLikeData,
+        @Path("post-id") postId:String,
         @Query("state") state:Boolean,
     ): Call<ResponseLikeData>
 }
