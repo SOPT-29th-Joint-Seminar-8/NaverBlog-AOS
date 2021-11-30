@@ -3,29 +3,30 @@ package co.kr.naverblog_andoid.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import co.kr.naverblog_andoid.R
 import co.kr.naverblog_andoid.data.FeedData
+import co.kr.naverblog_andoid.data.feed.main.Post
 import co.kr.naverblog_andoid.databinding.ItemFeedBoardBinding
 import com.bumptech.glide.Glide
 
-class FeedAdapter(val itemClick: (FeedData) -> Unit) :
+class FeedAdapter(private val itemClick: (Post) -> Unit) :
     RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
-    val itemList = mutableListOf<FeedData>()
+    val itemList = mutableListOf<Post>()
 
     class FeedViewHolder(
         private val binding: ItemFeedBoardBinding,
-        val itemClick: (FeedData) -> Unit
+        val itemClick: (Post) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: FeedData) {
-            Glide.with(binding.imageviewFeedBoardThumbnail.context)
-                .load(data.imageUrl)
+        fun onBind(data: Post) {
+            Glide.with(binding.imageviewFeedBoardThumbnail)
+                .load(R.drawable.img_post)
                 .into(binding.imageviewFeedBoardThumbnail)
-
             binding.textviewFeedBoardTitle.text = data.title
-            binding.textviewFeedBoardText.text = data.text
-            binding.textviewFeedBoardDate.text = data.date
-            binding.textviewFeedBoardHeartCount.text = data.heartCount.toString()
-            binding.textviewFeedBoardCommentCount.text = data.commentCount.toString()
-            binding.constraintlayoutFeedHeart.isSelected = data.isHeartPressed
+            binding.textviewFeedBoardText.text = data.content
+            binding.textviewFeedBoardDate.text = data.createdAt
+            binding.textviewFeedBoardHeartCount.text = data.heartNum.toString()
+            binding.textviewFeedBoardCommentCount.text = data.commentNum
+            binding.constraintlayoutFeedHeart.isSelected = data.isLike
 
             binding.constraintlayoutFeedHeart.setOnClickListener {
                 var heartCount = Integer.parseInt(binding.textviewFeedBoardHeartCount.text as String)
