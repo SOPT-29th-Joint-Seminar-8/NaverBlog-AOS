@@ -21,7 +21,10 @@
         android:id="@+id/textView_re_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="8dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanum_barun_gothic_bold"
         tools:text="@string/dummy_name"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_ic_tag_color"
         app:layout_constraintStart_toEndOf="@+id/imageView_ic_tag_color"
@@ -33,6 +36,8 @@
         android:layout_height="wrap_content"
         tools:text="@string/dummy_comment"
         android:layout_marginTop="12dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/imageView_ic_tag_color"
         app:layout_constraintTop_toBottomOf="@+id/textView_re_name" />
 
@@ -54,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="7dp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView_re_comment"
         app:layout_constraintEnd_toStartOf="@+id/imageButton_re_heart"
         app:layout_constraintTop_toTopOf="@+id/textView_re_comment"
@@ -65,10 +71,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-
         app:layout_constraintBottom_toBottomOf="@+id/textView_heart_count"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintTop_toTopOf="@+id/textView_heart_count"
         app:srcCompat="@drawable/selector_heart_button" />
 
@@ -84,5 +88,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView_re_date_time"
         app:layout_constraintStart_toEndOf="@+id/textView_re_date_time"
         app:layout_constraintTop_toTopOf="@+id/textView_re_date_time" />
+
+    <ImageView
+        android:id="@+id/imageView_isOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_re_name"
+        app:layout_constraintStart_toEndOf="@+id/textView_re_name"
+        app:layout_constraintTop_toTopOf="@+id/textView_re_name"
+        app:srcCompat="@drawable/btn_owner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

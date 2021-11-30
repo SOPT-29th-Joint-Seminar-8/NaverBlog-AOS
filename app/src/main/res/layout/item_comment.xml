@@ -11,8 +11,10 @@
         android:id="@+id/textView_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="25dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
         android:fontFamily="@font/nanum_barun_gothic_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,6 +24,8 @@
         android:id="@+id/textView_comment"
         android:layout_width="wrap_content"
         android:layout_marginTop="13dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
         android:fontFamily="@font/nanum_barun_gothic"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +38,12 @@
         android:layout_width="wrap_content"
         android:fontFamily="@font/nanum_barun_gothic"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_comment"
         tools:text="@string/dummy_date_time" />
 
-    <android.widget.Button
+    <TextView
         android:id="@+id/button_write_recomment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,6 +54,7 @@
         android:minHeight="0dp"
         android:text="@string/write_recomment"
         android:textColor="@color/gray_7d"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView_date_time"
         app:layout_constraintStart_toEndOf="@+id/textView_date_time"
         app:layout_constraintTop_toTopOf="@+id/textView_date_time" />
@@ -58,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="7dp"
+        android:textSize="12sp"
         android:fontFamily="@font/nanum_barun_gothic"
         app:layout_constraintBottom_toBottomOf="@+id/textView_comment"
         app:layout_constraintEnd_toStartOf="@+id/imageButton_heart"
@@ -90,6 +97,7 @@
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="@string/hide_recomment"
+        android:textSize="12sp"
         android:textColor="@color/gray_7d"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textView11"
@@ -97,8 +105,8 @@
 
     <ImageView
         android:id="@+id/imageButton_heart"
-        android:layout_width="15dp"
-        android:layout_height="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/rectangle_full_white"
         app:layout_constraintBottom_toBottomOf="@+id/textView_heart_counter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,10 +137,21 @@
         android:id="@+id/imageView_ic_color_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_color_tag" />
+
+    <ImageView
+        android:id="@+id/imageView_isOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_name"
+        app:layout_constraintStart_toEndOf="@+id/textView_name"
+        app:layout_constraintTop_toTopOf="@+id/textView_name"
+        app:srcCompat="@drawable/btn_owner" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
