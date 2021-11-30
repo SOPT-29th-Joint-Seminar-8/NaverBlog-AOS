@@ -72,7 +72,7 @@ class FeedFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             },
             onError = {
-
+                Log.d("GetMain", "Failed")
             }
         )
     }
