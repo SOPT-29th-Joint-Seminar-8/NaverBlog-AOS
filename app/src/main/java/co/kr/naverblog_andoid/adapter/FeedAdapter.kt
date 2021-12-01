@@ -1,41 +1,59 @@
 package co.kr.naverblog_andoid.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import co.kr.naverblog_andoid.data.FeedData
+import co.kr.naverblog_andoid.R
+import co.kr.naverblog_andoid.api.ApiService
+import co.kr.naverblog_andoid.data.feed.main.Post
 import co.kr.naverblog_andoid.databinding.ItemFeedBoardBinding
+import co.kr.naverblog_andoid.util.enqueueUtil
 import com.bumptech.glide.Glide
 
-class FeedAdapter(val itemClick: (FeedData) -> Unit) :
+class FeedAdapter(private val itemClick: (Post) -> Unit) :
     RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
-    val itemList = mutableListOf<FeedData>()
+    val itemList = mutableListOf<Post>()
 
     class FeedViewHolder(
         private val binding: ItemFeedBoardBinding,
-        val itemClick: (FeedData) -> Unit
+        val itemClick: (Post) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: FeedData) {
-            Glide.with(binding.imageviewFeedBoardThumbnail.context)
-                .load(data.imageUrl)
+        fun onBind(data: Post) {
+            Glide.with(binding.imageviewFeedBoardThumbnail)
+                .load(R.drawable.img_post)
                 .into(binding.imageviewFeedBoardThumbnail)
-
             binding.textviewFeedBoardTitle.text = data.title
-            binding.textviewFeedBoardText.text = data.text
-            binding.textviewFeedBoardDate.text = data.date
-            binding.textviewFeedBoardHeartCount.text = data.heartCount.toString()
-            binding.textviewFeedBoardCommentCount.text = data.commentCount.toString()
-            binding.constraintlayoutFeedHeart.isSelected = data.isHeartPressed
+            binding.textviewFeedBoardText.text = data.content
+            binding.textviewFeedBoardDate.text = data.createdAt
+            binding.textviewFeedBoardHeartCount.text = data.heartNum.toString()
+            binding.textviewFeedBoardCommentCount.text = data.commentNum
+            binding.constraintlayoutFeedHeart.isSelected = data.isLike
 
             binding.constraintlayoutFeedHeart.setOnClickListener {
-                var heartCount = Integer.parseInt(binding.textviewFeedBoardHeartCount.text as String)
-                it.isSelected = !it.isSelected
-                if(it.isSelected) {
-                    heartCount += 1
-                } else {
-                    heartCount -= 1
-                }
-                binding.textviewFeedBoardHeartCount.text = heartCount.toString()
+                val call = ApiService.feedService.patchLike(
+                    data.postId.toString(),
+                    state = data.isLike
+                )
+
+                call.enqueueUtil(
+                    onSuccess = {
+                        var heartCount =
+                            Integer.parseInt(binding.textviewFeedBoardHeartCount.text as String)
+                        binding.constraintlayoutFeedHeart.apply {
+                            this.isSelected = !this.isSelected
+                            if (this.isSelected) {
+                                heartCount += 1
+                            } else {
+                                heartCount -= 1
+                            }
+                            binding.textviewFeedBoardHeartCount.text = heartCount.toString()
+                        }
+                    },
+                    onError = {
+                        Log.d("PatchLike", "failed")
+                    }
+                )
             }
 
             binding.root.setOnClickListener {
@@ -45,7 +63,8 @@ class FeedAdapter(val itemClick: (FeedData) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
-        val binding = ItemFeedBoardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemFeedBoardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FeedViewHolder(binding, itemClick)
     }
 
