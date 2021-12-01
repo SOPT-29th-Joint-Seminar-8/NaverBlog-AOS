@@ -1,5 +1,6 @@
 package co.kr.naverblog_andoid.view.main.feed
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import co.kr.naverblog_andoid.R
 import co.kr.naverblog_andoid.adapter.FeedAdapter
 import co.kr.naverblog_andoid.api.ApiService
-import co.kr.naverblog_andoid.data.FeedData
 import co.kr.naverblog_andoid.databinding.FragmentFeedBinding
-import co.kr.naverblog_andoid.databinding.ItemFeedBoardBinding
 import co.kr.naverblog_andoid.util.enqueueUtil
 import co.kr.naverblog_andoid.view.comment.CommentActivity
 import com.bumptech.glide.Glide
@@ -32,7 +30,7 @@ class FeedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFeedBinding.inflate(layoutInflater, container, false)
         initRecyclerView()
         return binding.root
@@ -43,12 +41,14 @@ class FeedFragment : Fragment() {
         initNetwork()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initRecyclerView() {
         binding.recyclerviewFeedBoard.adapter = adapter
         binding.recyclerviewFeedBoard.layoutManager = LinearLayoutManager(context)
         adapter.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initNetwork() {
         val call = ApiService.feedService.getMain()
 
