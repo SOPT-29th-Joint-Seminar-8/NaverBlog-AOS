@@ -11,5 +11,6 @@ object ApiService {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val feedService = retrofit.create(FeedService::class.java)
+    val feedService: FeedService = retrofit.create(FeedService::class.java)
+    val commentService: CommentService = retrofit.create(CommentService::class.java)
 }
