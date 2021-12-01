@@ -1,6 +1,5 @@
 package co.kr.naverblog_andoid.api
 
-import co.kr.naverblog_andoid.data.feed.like.RequestLikeData
 import co.kr.naverblog_andoid.data.feed.like.ResponseLikeData
 import co.kr.naverblog_andoid.data.feed.main.ResponseFeedData
 import retrofit2.Call
