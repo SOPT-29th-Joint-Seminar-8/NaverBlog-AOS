@@ -20,6 +20,7 @@ class FeedAdapter(private val itemClick: (Post) -> Unit) :
         val itemClick: (Post) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: Post) {
+            // // 서버에서 받아온 데이터 bind 하는 과정
             Glide.with(binding.imageviewFeedBoardThumbnail)
                 .load(R.drawable.img_post)
                 .into(binding.imageviewFeedBoardThumbnail)
@@ -30,6 +31,7 @@ class FeedAdapter(private val itemClick: (Post) -> Unit) :
             binding.textviewFeedBoardCommentCount.text = data.commentNum
             binding.constraintlayoutFeedHeart.isSelected = data.isLike
 
+            // util 함수 사용한 서버통신(좋아요)
             binding.constraintlayoutFeedHeart.setOnClickListener {
                 val call = ApiService.feedService.patchLike(
                     data.postId.toString(),

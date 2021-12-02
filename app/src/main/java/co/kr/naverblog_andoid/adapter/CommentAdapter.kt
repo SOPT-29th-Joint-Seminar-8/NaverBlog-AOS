@@ -23,6 +23,7 @@ class CommentAdapter(private val itemClick: (Int) -> Unit)
     ): RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
         fun onBind(data: Comment) {
+            // 서버에서 받아온 데이터 bind 하는 과정
             Glide.with(binding.imageviewCommentProfile)
                 .load(R.drawable.ic_color_tag)
                 .into(binding.imageviewCommentProfile)
@@ -42,11 +43,13 @@ class CommentAdapter(private val itemClick: (Int) -> Unit)
             binding.recyclerviewCommentFeedback.adapter = adapter
             adapter.notifyDataSetChanged()
 
+            // 댓글 작성자가 블로그 주인인 경우
             when(data.isOwner) {
                 true -> binding.imageviewCommentOwner.visibility = View.VISIBLE
                 false -> binding.imageviewCommentOwner.visibility = View.GONE
             }
 
+            // util 함수 사용한 서버통신(좋아요)
             binding.constraintlayoutCommentHeart.setOnClickListener {
                 val call = ApiService.commentService.patchLike(data.commentId.toString(), data.isLike)
 
@@ -69,6 +72,8 @@ class CommentAdapter(private val itemClick: (Int) -> Unit)
                 )
             }
 
+            // 답글이 없는 경우 답글을 펼치지 않음
+            // 답글이 있는 경우 클릭 시 답글 펼침
             binding.textviewCommentFeedbackVisibility.setOnClickListener {
                 if(data.reply.size != 0) {
                     if (binding.recyclerviewCommentFeedback.visibility == View.GONE) {
