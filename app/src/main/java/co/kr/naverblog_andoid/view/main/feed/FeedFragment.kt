@@ -48,6 +48,7 @@ class FeedFragment : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
+    // util 함수 사용한 서버통신(피드 불러오기)
     @SuppressLint("NotifyDataSetChanged")
     private fun initNetwork() {
         val call = ApiService.feedService.getMain()

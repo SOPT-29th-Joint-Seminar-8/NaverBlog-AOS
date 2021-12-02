@@ -24,6 +24,7 @@ class CommentFeedbackAdapter(val itemClick: (Int) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun onBind(data: Reply) {
+            // 서버에서 받아온 데이터 bind 하는 과정
             Glide.with(binding.imageviewCommentFeedbackProfile)
                 .load(R.drawable.ic_color_tag)
                 .into(binding.imageviewCommentFeedbackProfile)
@@ -34,11 +35,13 @@ class CommentFeedbackAdapter(val itemClick: (Int) -> Unit) :
             binding.imageviewCommentFeedbackHeart.isSelected = data.isLike
             binding.textviewCommentFeedbackDate.text = data.createdAt
 
+            // 댓글 작성자가 블로그 주인인 경우
             when (data.isOwner) {
                 true -> binding.imageviewCommentFeedbackOwner.visibility = View.VISIBLE
                 false -> binding.imageviewCommentFeedbackOwner.visibility = View.GONE
             }
 
+            // util 함수 사용한 서버통신(좋아요)
             binding.constraintlayoutCommentFeedbackHeart.setOnClickListener {
                 val call =
                     ApiService.commentService.patchLike(data.commentId.toString(), data.isLike)
