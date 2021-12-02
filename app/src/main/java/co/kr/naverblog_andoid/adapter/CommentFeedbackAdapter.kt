@@ -13,10 +13,14 @@ import co.kr.naverblog_andoid.databinding.ItemCommentFeedbackBinding
 import co.kr.naverblog_andoid.util.enqueueUtil
 import com.bumptech.glide.Glide
 
-class CommentFeedbackAdapter: RecyclerView.Adapter<CommentFeedbackAdapter.CommentFeedbackViewHolder>() {
+class CommentFeedbackAdapter(val itemClick: (Int) -> Unit) :
+    RecyclerView.Adapter<CommentFeedbackAdapter.CommentFeedbackViewHolder>() {
     val itemList = mutableListOf<Reply>()
 
-    class CommentFeedbackViewHolder(private val binding: ItemCommentFeedbackBinding) :
+    class CommentFeedbackViewHolder(
+        private val binding: ItemCommentFeedbackBinding,
+        val itemClick: (Int) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun onBind(data: Reply) {
@@ -30,23 +34,25 @@ class CommentFeedbackAdapter: RecyclerView.Adapter<CommentFeedbackAdapter.Commen
             binding.imageviewCommentFeedbackHeart.isSelected = data.isLike
             binding.textviewCommentFeedbackDate.text = data.createdAt
 
-            when(data.isOwner) {
+            when (data.isOwner) {
                 true -> binding.imageviewCommentFeedbackOwner.visibility = View.VISIBLE
                 false -> binding.imageviewCommentFeedbackOwner.visibility = View.GONE
             }
 
             binding.constraintlayoutCommentFeedbackHeart.setOnClickListener {
-                val call = ApiService.commentService.patchLike(data.commentId.toString(), data.isLike)
+                val call =
+                    ApiService.commentService.patchLike(data.commentId.toString(), data.isLike)
 
                 call.enqueueUtil(
                     onSuccess = {
-                        var heartCount = Integer.parseInt(binding.textviewCommentFeedbackHeartCount.text as String)
+                        var heartCount =
+                            Integer.parseInt(binding.textviewCommentFeedbackHeartCount.text as String)
                         with(binding.imageviewCommentFeedbackHeart) {
                             this.isSelected = !this.isSelected
-                            if(this.isSelected) {
-                                heartCount+=1
+                            if (this.isSelected) {
+                                heartCount += 1
                             } else {
-                                heartCount-=1
+                                heartCount -= 1
                             }
                         }
                         binding.textviewCommentFeedbackHeartCount.text = heartCount.toString()
@@ -56,12 +62,18 @@ class CommentFeedbackAdapter: RecyclerView.Adapter<CommentFeedbackAdapter.Commen
                     }
                 )
             }
+
+            // 답글 달기
+            binding.textviewCommentFeedbackFeedback.setOnClickListener {
+                itemClick(data.groupId)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentFeedbackViewHolder {
-        val binding = ItemCommentFeedbackBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CommentFeedbackViewHolder(binding)
+        val binding =
+            ItemCommentFeedbackBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CommentFeedbackViewHolder(binding, itemClick)
     }
 
     override fun onBindViewHolder(holder: CommentFeedbackViewHolder, position: Int) {

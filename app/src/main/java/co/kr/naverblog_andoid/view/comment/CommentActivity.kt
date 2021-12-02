@@ -20,7 +20,7 @@ class CommentActivity : AppCompatActivity() {
     private var groupId = -1
     private val adapter by lazy {
         CommentAdapter() {
-            groupId = it.groupId
+            groupId = it
             openKeyBoard()
         }
     }

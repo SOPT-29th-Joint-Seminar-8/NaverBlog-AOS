@@ -13,13 +13,13 @@ import co.kr.naverblog_andoid.databinding.ItemCommentBinding
 import co.kr.naverblog_andoid.util.enqueueUtil
 import com.bumptech.glide.Glide
 
-class CommentAdapter(private val itemClick: (Comment) -> Unit)
+class CommentAdapter(private val itemClick: (Int) -> Unit)
     : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     val itemList = mutableListOf<Comment>()
 
     class CommentViewHolder(
         private val binding: ItemCommentBinding,
-        val itemClick: (Comment) -> Unit
+        val itemClick: (Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
         fun onBind(data: Comment) {
@@ -35,7 +35,9 @@ class CommentAdapter(private val itemClick: (Comment) -> Unit)
             binding.textviewCommentFeedbackVisibility.text = "답글 ${data.reply.size}개 보기"
 
             // recyclerview 처리 필요
-            val adapter = CommentFeedbackAdapter()
+            val adapter = CommentFeedbackAdapter() {
+                itemClick(it)
+            }
             adapter.itemList.addAll(data.reply)
             binding.recyclerviewCommentFeedback.adapter = adapter
             adapter.notifyDataSetChanged()
@@ -82,7 +84,7 @@ class CommentAdapter(private val itemClick: (Comment) -> Unit)
 
             // 답글 달기
             binding.textviewCommentFeedback.setOnClickListener {
-                itemClick(data)
+                itemClick(data.groupId)
             }
         }
     }
