@@ -35,7 +35,9 @@ class CommentAdapter(private val itemClick: (Int) -> Unit)
             binding.textviewCommentFeedbackVisibility.text = "답글 ${data.reply.size}개 보기"
 
             // recyclerview 처리 필요
-            val adapter = CommentFeedbackAdapter()
+            val adapter = CommentFeedbackAdapter() {
+                itemClick(it)
+            }
             adapter.itemList.addAll(data.reply)
             binding.recyclerviewCommentFeedback.adapter = adapter
             adapter.notifyDataSetChanged()
