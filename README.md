@@ -14,6 +14,47 @@
 </div>
 
 <details>
+  <summary><b>Naver Blog Android Developer</b></summary>
+<div markdown="1"> 
+<table align="center" style = "table-layout: auto; width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <col style="width:33%"/>
+  </colgroup>
+  <tr>
+    <td>
+      <img src= "https://user-images.githubusercontent.com/81508084/144585901-e1e2dd70-0a19-4ad5-906c-c07e32231819.gif"/> 
+    </td>
+    <td>
+      <img src="https://user-images.githubusercontent.com/81508084/144585901-e1e2dd70-0a19-4ad5-906c-c07e32231819.gif"/> 
+    </td>
+    <td>
+      <img src="https://user-images.githubusercontent.com/81508084/144585901-e1e2dd70-0a19-4ad5-906c-c07e32231819.gif"/> 
+    </td>
+  </tr>
+  <tr>
+    <th align="center">한승현</th>
+    <th align="center">김대호</th>
+    <th align="center">이혜빈</th>
+  </tr>
+  <tr>
+    <td align="center">
+     피드, 댓글 담당
+    </td>
+    <td align="center">
+     댓글 담당
+    </td>
+    <td align="center">
+     피드 담당
+    </td>
+  </tr>
+</table>
+  
+</details>
+</div>
+
+<details>
   <summary><b>Git Branch Convention</b></summary>
 <div markdown="1">
   
